@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Practical Molecule Optimization"
+title: "Practical Molecule Optimization Leaderboard"
 permalink: /
 
 ---
