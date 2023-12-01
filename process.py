@@ -16,7 +16,7 @@ properties = ['albuterol_similarity', 'amlodipine_mpo', 'celecoxib_rediscovery',
 				'sitagliptin_mpo', 'thiothixene_rediscovery', 'troglitazone_rediscovery',\
 				'valsartan_smarts', 'zaleplon_mpo', ]
 
-sheet_names = ['AUC Top-100', 'Top-1', 'Top-10', 'Top-100', 'AUC Top-1', 'AUC Top-10', ]
+sheet_names = ['AUC Top-100', 'AUC Top-10', 'AUC Top-1', 'Top-100', 'Top-10', 'Top-1', ]
 
 result_dict = defaultdict(lambda:defaultdict(lambda:defaultdict()))
 for sheet_name in sheet_names:
@@ -27,7 +27,57 @@ for sheet_name in sheet_names:
 		for j,prop in enumerate(properties): 
 			result_dict[prop][method][sheet_name] = float(df.iloc[j,i+1])
 
+
+with open('_layouts/tmp1.html') as fin:
+	lines1 = fin.readlines() 
+lines1[-1] = lines1[-1].strip()
+
+with open('_layouts/tmp2.html') as fin:
+	lines2 = fin.readlines() 
+lines2[-1] = lines2[-1].strip()
+
+
 for prop in properties:
 	if not os.path.exists(prop):
 		os.makedirs(prop)
+	file = os.path.join(prop, 'index.md') 
+	with open(file, 'w') as fo:
+		fo.write('---\n')
+		fo.write('layout: '+ prop + '\n')
+		fo.write('title: "PMO: ' + prop + '"\n')
+		fo.write("permalink: /"+ prop +'\n\n')
+		fo.write('---\n\n')
+		fo.write('# ' + prop + " Leaderboard\n")
+		fo.write('\n\n\n\n')
+		fo.write('| Method | AUC top-100 | AUC top-10 | AUC top-1 | top-100 | top-10 | top-1 |\n')
+		fo.write('| :--- | :------------- | :--- | :--- | :--- | :--- | :--- |\n')
+		result_list = []
+		for method in methods:
+			lst = [method,]+ [result_dict[prop][method][sheet_name] for sheet_name in sheet_names] 
+			result_list.append(lst)
+		result_list = sorted(result_list, key=lambda x:x[2], reverse=True)
+		for result in result_list:
+			fo.write('| ' + result[0] + ' | ' + ' | '.join([str(i)[:5] for i in result[1:]]) + ' |\n')
+		fo.write('\n\n')
+	file = os.path.join('_layouts', prop+'.html')
+	with open(file, 'w') as fo:
+		for line in lines1:
+			fo.write(line)
+		fo.write(prop)
+		for line in lines2: 
+			fo.write(line)
+
+
+
+print('\n\n##### _layouts/default.html ####\n\n')
+for prop in properties:
+	print('      <a href="' + prop + '.html" class="btn">' + prop + '</a>')
+
+
+
+
+
+
+
+
 
