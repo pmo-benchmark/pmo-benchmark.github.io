@@ -1,5 +1,6 @@
 import pandas as pd
 import os 
+from collections import defaultdict 
 file_path = "Mol_Opt.xlsx"
 xl = pd.ExcelFile(file_path)
 sheet_names = xl.sheet_names
@@ -17,13 +18,16 @@ properties = ['albuterol_similarity', 'amlodipine_mpo', 'celecoxib_rediscovery',
 
 sheet_names = ['AUC Top-100', 'Top-1', 'Top-10', 'Top-100', 'AUC Top-1', 'AUC Top-10', ]
 
+result_dict = defaultdict(lambda:defaultdict(lambda:defaultdict()))
 for sheet_name in sheet_names:
 	df = pd.read_excel(file_path, sheet_name=sheet_name)
 	methods = df.columns.to_list()[1:] ## 'screening', 'mol_pal', 
 	properties = df.iloc[:, 0].to_list()[:-2] 
-	print(properties, methods)
-	print(len(properties), len(methods))
+	for i,method in enumerate(methods):
+		for j,prop in enumerate(properties): 
+			result_dict[prop][method][sheet_name] = float(df.iloc[j,i+1])
 
-print(len(properties), properties)
-
+for prop in properties:
+	if not os.path.exists(prop):
+		os.makedirs(prop)
 
