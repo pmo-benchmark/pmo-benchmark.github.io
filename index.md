@@ -7,6 +7,7 @@ permalink: /
 
 # About
 
+This is a leaderboard for Practical Molecule Optimization (PMO), where we report the performance of 25 machine learning methods on 23 pharmaceutical property optimization tasks. 
 
 ## Paper
 
