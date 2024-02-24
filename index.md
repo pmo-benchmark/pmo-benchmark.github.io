@@ -47,8 +47,8 @@ This is a leaderboard for Practical Molecule Optimization (PMO), where we report
 Welcome to check our paper entitled [Sample Efficiency Matters: A Benchmark for Practical Molecular Optimization](https://openreview.net/forum?id=yCZRdI0Y7G) in NeurIPS 2022 Track on Datasets and Benchmarks. 
 
 
-## GitHub
+## Software
 
-Please follow us on [GitHub](https://github.com/wenhao-gao/mol_opt). 
+Please follow us on [GitHub](https://github.com/wenhao-gao/mol-opt). 
 
 
