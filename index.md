@@ -49,6 +49,6 @@ Welcome to check our paper entitled [Sample Efficiency Matters: A Benchmark for 
 
 ## Software
 
-Please follow us on [GitHub](https://github.com/wenhao-gao/mol-opt). 
+Please follow us on [GitHub](https://github.com/wenhao-gao/mol-opt), which supports 3 line of code to run more than 10 molecule optimization methods. 
 
 
