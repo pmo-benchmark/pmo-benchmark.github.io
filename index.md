@@ -10,9 +10,7 @@ permalink: /
 This is a leaderboard for Practical Molecule Optimization (PMO), where we report the performance of 25 machine learning methods on 23 pharmaceutical property optimization tasks. 
 
 
-# Overall Ranking on Different Metrics
-
-
+## Overall Ranking on Different Metrics
 
 
 | Method | AUC top-100 | AUC top-10 | AUC top-1 | top-100 | top-10 | top-1 | Mean | 
